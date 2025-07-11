@@ -60,15 +60,16 @@ function App() {
 							path="register"
 							element={<Register />}
 						/>
-						<Route
-							path="error"
-							element={<Error />}
-						/>
+
 						<Route
 							path="products"
 							element={<Products />}
 						/>
 					</Route>
+					<Route
+						path="*"
+						element={<Error />}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>

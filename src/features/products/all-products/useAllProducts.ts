@@ -8,6 +8,6 @@ export function useAllProducts() {
 		queryKey: ["allProducts"],
 		queryFn: getAllProducts
 	});
-	// console.log(data?.data);
+
 	return { isLoading, error, data };
 }

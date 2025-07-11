@@ -1,5 +1,6 @@
-function ProductCard({ product }) {
-	console.log(product.attributes);
+import { type Product } from "@/types/productTypes";
+function ProductCard({ product }: { product: Product }) {
+	// console.log(product.attributes);
 	const { image, title } = product.attributes;
 	return (
 		<div>
