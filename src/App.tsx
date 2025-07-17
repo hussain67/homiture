@@ -10,6 +10,7 @@ import Orders from "./pages/Orders";
 import Error from "./pages/Error";
 import Register from "./pages/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SingleProduct from "./features/products/single-product/SingleProduct";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -64,6 +65,10 @@ function App() {
 						<Route
 							path="products"
 							element={<Products />}
+						/>
+						<Route
+							path="products/:productId"
+							element={<SingleProduct />}
 						/>
 					</Route>
 					<Route

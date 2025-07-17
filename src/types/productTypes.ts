@@ -3,24 +3,28 @@ export type ProductResponse = {
 	meta: ProductsMeta;
 };
 
+export type SingleProductResponse = {
+	data: Product;
+	meta: object;
+};
 export type Product = {
 	id: number;
-	attributes: {
-		title: string;
-		company: string;
-		description: string;
-		featured: boolean;
-		createdAt: string;
-		updatedAt: string;
-		publishedAt: string;
-		category: string;
-		image: string;
-		price: string;
-		shipping: boolean;
-		colors: [];
-	};
+	attributes?: ProductAttributes;
 };
-
+export type ProductAttributes = {
+	title: string;
+	company: string;
+	description: string;
+	featured: boolean;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	category: string;
+	image: string;
+	price: string;
+	shipping: boolean;
+	colors: string[];
+};
 export type ProductsMeta = {
 	categories: string[];
 	companies: string[];

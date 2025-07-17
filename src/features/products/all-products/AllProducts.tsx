@@ -13,15 +13,17 @@ function AllProducts() {
 		return <Error message={error.message} />;
 	}
 	return (
-		<div>
+		<section>
 			<h1>All Products</h1>
-			{products?.map(product => (
-				<ProductCard
-					product={product}
-					key={product.id}
-				/>
-			))}
-		</div>
+			<div className="grid gap-5 grid-cols-[repeat(auto-fill,_minmax(290px,_1fr))]">
+				{products?.map(product => (
+					<ProductCard
+						product={product}
+						key={product.id}
+					/>
+				))}
+			</div>
+		</section>
 	);
 }
 
