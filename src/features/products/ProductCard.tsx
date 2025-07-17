@@ -1,8 +1,8 @@
-import { type Product } from "@/types/productTypes";
+import { type Product, type ProductAttributes } from "@/types/productTypes";
 import { Link } from "react-router-dom";
 function ProductCard({ product }: { product: Product }) {
 	const { id } = product;
-	const { image, title, price, company } = product.attributes;
+	const { image, title, price, company } = product.attributes as ProductAttributes;
 	return (
 		<Link
 			to={`/products/${id}`}
