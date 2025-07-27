@@ -8,7 +8,7 @@ import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Orders from "./pages/Orders";
 import Error from "./pages/Error";
-import Register from "./pages/Register";
+import Signup from "./pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
 
@@ -49,17 +49,10 @@ function App() {
 							path="checkout"
 							element={<Checkout />}
 						/>
-						<Route
-							path="login"
-							element={<Login />}
-						/>
+
 						<Route
 							path="orders"
 							element={<Orders />}
-						/>
-						<Route
-							path="register"
-							element={<Register />}
 						/>
 
 						<Route
@@ -71,6 +64,14 @@ function App() {
 							element={<Product />}
 						/>
 					</Route>
+					<Route
+						path="login"
+						element={<Login />}
+					/>
+					<Route
+						path="signup"
+						element={<Signup />}
+					/>
 					<Route
 						path="*"
 						element={<Error />}

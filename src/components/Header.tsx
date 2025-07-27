@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { FaRegMoon } from "react-icons/fa6";
 import { IoSunnyOutline } from "react-icons/io5";
 import type { Theme } from "@/types/themeTypes";
+
 function Header() {
 	const { theme } = useAppSelector(state => state.themeState);
 
@@ -14,7 +15,7 @@ function Header() {
 	function handleDispatch(theme: Theme) {
 		dispatch(setTheme(theme));
 	}
-	console.log(theme);
+
 	return (
 		<section className="flex gap-6 justify-end items-center">
 			<div className="flex items-center text-2xl">
@@ -38,7 +39,7 @@ function Header() {
 			</div>
 			<div className="flex gap-6">
 				<NavLink to="/login">Login</NavLink>
-				<NavLink to="/register">Register</NavLink>
+				<NavLink to="/signup">Signup</NavLink>
 			</div>
 		</section>
 	);
