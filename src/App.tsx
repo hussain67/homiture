@@ -5,7 +5,7 @@ import Products from "./pages/Products";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import Orders from "./pages/Orders";
 import Error from "./pages/Error";
 import Signup from "./pages/Signup";
@@ -65,8 +65,8 @@ function App() {
 						/>
 					</Route>
 					<Route
-						path="login"
-						element={<Login />}
+						path="signin"
+						element={<Signin />}
 					/>
 					<Route
 						path="signup"
