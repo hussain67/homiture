@@ -6,7 +6,7 @@ import SelectProduct from "./SelectProduct";
 function SingleProduct() {
 	const { productId } = useParams();
 	const { isLoading, error, data } = useSingleProduct(productId as string);
-
+	// console.log(data);
 	if (isLoading) {
 		return <h1 className="text-3xl">Loading....</h1>;
 	}
@@ -14,7 +14,12 @@ function SingleProduct() {
 		return <Error message="Product could not be loaded" />;
 	}
 	if (data?.data.attributes) {
-		return <SelectProduct productInfo={data?.data?.attributes} />;
+		return (
+			<SelectProduct
+				productInfo={data?.data?.attributes}
+				productId={productId as string}
+			/>
+		);
 	}
 }
 

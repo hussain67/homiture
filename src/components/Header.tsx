@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { FaRegMoon } from "react-icons/fa6";
 import { IoSunnyOutline } from "react-icons/io5";
 import type { Theme } from "@/types/themeTypes";
-// import type { User } from "@/types/authenticationTypes";
 import { logoutUser } from "@/features/user/userSlice";
 import logoLight from "../assets/logo-light.png";
 import logoDark from "../assets/logo-dark.png";
@@ -12,7 +11,6 @@ import logoDark from "../assets/logo-dark.png";
 function Header() {
 	const { theme } = useAppSelector(state => state.themeState);
 	const userName = useAppSelector(state => state.userState.user?.userName);
-	// console.log(userName);
 
 	const dispatch = useAppDispatch();
 
@@ -64,7 +62,7 @@ function Header() {
 							<IoSunnyOutline />
 						</button>
 					)}
-					{theme === "light" && (
+					{theme !== "dark" && (
 						<button
 							className="cursor-pointer"
 							onClick={() => handleDispatch("dark")}
