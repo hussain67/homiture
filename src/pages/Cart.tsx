@@ -1,13 +1,14 @@
-import CartList from "@/features/cart/CartList";
-import { useAppSelector } from "@/hooks";
+import CartInfo from "@/features/cart/CartInfo";
+// import { useAppSelector } from "@/hooks";
 
 function Cart() {
-	const cartList = useAppSelector(state => console.log(state.cartState));
-	console.log(cartList);
+	// const cartList = useAppSelector(state => console.log(state.cartState));
+	// console.log(cartList);
 	return (
-		<div>
-			<CartList />
-		</div>
+		<main>
+			<h1 className="text-xl border-slate-400 border-b-[.5px] pb-2 mb-8">Cart Items</h1>
+			<CartInfo />
+		</main>
 	);
 }
 

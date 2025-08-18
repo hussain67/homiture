@@ -4,7 +4,7 @@ import { axiosInstance } from "@/utils/axiosInstance";
 export async function getAllProducts(): Promise<ProductResponse> {
 	try {
 		const response = await axiosInstance<ProductResponse>("/products");
-		console.log(response.data);
+		// console.log(response.data);
 		return response.data;
 	} catch {
 		throw new Error("Data could not be loaded");

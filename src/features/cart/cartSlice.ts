@@ -9,14 +9,18 @@ const initialState: CartState = {
 	tax: 0,
 	orderTotal: 0
 };
+const getCartItems = (): CartState => {
+	const cart = localStorage.getItem("cart");
+	return cart ? JSON.parse(cart) : initialState;
+};
 
 const cartSlice = createSlice({
 	name: "cart",
-	initialState,
+	initialState: getCartItems(),
 	reducers: {
 		addItem: (state, action: PayloadAction<CartItem>) => {
 			const newCartItem = action.payload;
-			// console.log(newCartItem);
+			console.log(newCartItem);
 			const item = state.cartItems.find(i => i.cartId === newCartItem.cartId);
 			if (!item) {
 				state.cartItems.push(newCartItem);
@@ -28,6 +32,27 @@ const cartSlice = createSlice({
 			state.cartTotal += newCartItem.amount * Number(newCartItem.price);
 			cartSlice.caseReducers.calculateTotals(state);
 		},
+		editItem: (state, action: PayloadAction<{ cartId: string; amount: number }>) => {
+			const { cartId, amount } = action.payload;
+			const item = state.cartItems.find(i => i.cartId === cartId);
+			if (!item) return;
+			state.numItemsInCart += amount - item.amount;
+			state.cartTotal += (amount - item.amount) * Number(item.price);
+			item.amount = amount;
+			cartSlice.caseReducers.calculateTotals(state);
+		},
+
+		deleteItem: (state, action: PayloadAction<{ cartId: string }>) => {
+			const { cartId } = action.payload;
+			const item = state.cartItems.find(i => i.cartId === cartId);
+			if (!item) return;
+			state.numItemsInCart -= item.amount;
+			const updatedCartItems = state.cartItems.filter(item => item.cartId !== cartId);
+			state.cartItems = updatedCartItems;
+			state.cartTotal -= item.amount * Number(item.price);
+
+			cartSlice.caseReducers.calculateTotals(state);
+		},
 		calculateTotals: state => {
 			state.tax = 0.1 * state.cartTotal;
 			state.orderTotal = state.cartTotal + state.tax + state.shipping;
@@ -35,5 +60,5 @@ const cartSlice = createSlice({
 		}
 	}
 });
-export const { addItem } = cartSlice.actions;
+export const { addItem, editItem, deleteItem } = cartSlice.actions;
 export default cartSlice.reducer;
