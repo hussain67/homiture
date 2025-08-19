@@ -3,7 +3,7 @@ import CartTotal from "./CartTotal";
 
 function CartInfo() {
 	return (
-		<section className="grid lg:grid-cols-12 gap-6">
+		<section className="grid lg:grid-cols-12 gap-14">
 			<div className="lg:col-span-8">
 				<CartList />
 			</div>
