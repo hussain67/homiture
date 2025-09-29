@@ -11,6 +11,7 @@ import Error from "./pages/Error";
 import Signup from "./pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
+import LoginToCheckout from "./features/checkout/LoginToCheckout";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -48,6 +49,10 @@ function App() {
 						<Route
 							path="checkout"
 							element={<Checkout />}
+						/>
+						<Route
+							path="logintocheckout"
+							element={<LoginToCheckout />}
 						/>
 
 						<Route

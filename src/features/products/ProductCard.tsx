@@ -1,4 +1,5 @@
 import { type Product, type ProductAttributes } from "@/types/productTypes";
+import { formatAsPound } from "@/utils/formatAsPound";
 import { Link } from "react-router-dom";
 function ProductCard({ product }: { product: Product }) {
 	const { id } = product;
@@ -15,7 +16,7 @@ function ProductCard({ product }: { product: Product }) {
 			/>
 			<div className="flex justify-between mb-2">
 				<h1 className="capitalize">{title}</h1>
-				<h1 className="capitalize">{price}</h1>
+				<h1 className="capitalize"> {formatAsPound(price)}</h1>
 			</div>
 			<h1 className="capitalize">{company}</h1>
 		</Link>

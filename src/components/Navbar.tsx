@@ -10,6 +10,7 @@ function Navbar() {
 				<NavLink to="/about">About</NavLink>
 				<NavLink to="/products">Products</NavLink>
 				<NavLink to="/cart">Cart</NavLink>
+				<NavLink to="/checkout">Checkout</NavLink>
 			</div>
 			<button className="ml-auto cursor-pointer p-3 rounded-sm bg-background relative">
 				<FiShoppingCart className="text-blue-500" />

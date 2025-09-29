@@ -1,9 +1,10 @@
 import { type ProductResponse, type SingleProductResponse } from "@/types/productTypes";
 import { axiosInstance } from "@/utils/axiosInstance";
 
-export async function getAllProducts(): Promise<ProductResponse> {
+export async function getAllProducts(search: string, category: string, company: string, order: string, price: string, shipping: boolean): Promise<ProductResponse> {
 	try {
-		const response = await axiosInstance<ProductResponse>("/products");
+		const params = { search, category, company, order, price, shipping };
+		const response = await axiosInstance<ProductResponse>("/products", { params });
 		// console.log(response.data);
 		return response.data;
 	} catch {
