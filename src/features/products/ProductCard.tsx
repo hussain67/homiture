@@ -7,18 +7,20 @@ function ProductCard({ product }: { product: Product }) {
 	return (
 		<Link
 			to={`/products/${id}`}
-			className="border-2 border-slate-300 px-12 xs:px-18 b40:px-6 p-6"
+			className=" max-w-[350px] w-full sm:max-w-none mx-auto  border-1 border-slate-300 "
 		>
 			<img
 				src={image}
 				alt="Product"
-				className="w-full h-62 mb-3"
+				className=" w-full h-[200px] mb-3"
 			/>
-			<div className="flex justify-between mb-2">
-				<h1 className="capitalize">{title}</h1>
-				<h1 className="capitalize"> {formatAsPound(price)}</h1>
+			<div className="p-2 ">
+				<div className="flex justify-between mb-2">
+					<h1 className="capitalize">{title}</h1>
+					<h1 className="capitalize"> {formatAsPound(price)}</h1>
+				</div>
+				<h1 className="capitalize">{company}</h1>
 			</div>
-			<h1 className="capitalize">{company}</h1>
 		</Link>
 	);
 }

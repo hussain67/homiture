@@ -116,7 +116,7 @@
 }
 @layer components {
 	.align-content {
-		@apply p-4 md:p-8 max-w-6xl mx-auto;
+		@apply p-4 md:p-8 max-w-7xl mx-auto;
 	}
 }
 @layer base {

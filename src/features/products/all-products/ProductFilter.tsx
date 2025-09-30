@@ -17,7 +17,7 @@ export type FormInput = {
 function ProductFilter() {
 	const { register, handleSubmit, watch } = useForm<FormInput>({
 		defaultValues: {
-			price: 50000
+			price: 100000
 		}
 	});
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -34,6 +34,7 @@ function ProductFilter() {
 		searchParams.set("order", data.order);
 		searchParams.set("price", String(price));
 		searchParams.set("shipping", data.shipping);
+		searchParams.set("page", "1");
 
 		setSearchParams(searchParams);
 		console.log(data);
@@ -47,7 +48,7 @@ function ProductFilter() {
 	return (
 		<section>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<article className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] items-center gap-5 border-1 border-slate-400 p-4 mb-10 rounded-sm">
+				<article className="grid items-center gap-4 border-1 border-slate-400 p-4 mb-10 ">
 					<Search register={register} />
 
 					<Select
@@ -62,11 +63,11 @@ function ProductFilter() {
 						name="company"
 					/>
 
-					<Select
+					{/* <Select
 						options={["a-z", "z-a", "high", "low"]}
 						register={register}
 						name="order"
-					/>
+					/> */}
 
 					<Range
 						register={register}
