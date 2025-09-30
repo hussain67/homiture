@@ -2,6 +2,7 @@ import { useAllProducts } from "@/features/products/all-products/useAllProducts"
 import ProductCard from "../ProductCard";
 import Error from "@/pages/Error";
 import PaginationContainer from "@/components/PaginationContainer";
+import Spinner from "@/components/Spinner";
 
 function AllProducts() {
 	const { data, error, isLoading } = useAllProducts();
@@ -11,7 +12,8 @@ function AllProducts() {
 	const pageCount = data?.meta.pagination.pageCount as number;
 
 	if (isLoading) {
-		return <h1 className="text-7xl">Loading....</h1>;
+		// return <h1 className="text-7xl">Loading....</h1>;
+		return <Spinner />;
 	}
 	if (error) {
 		// console.log(error.message);
