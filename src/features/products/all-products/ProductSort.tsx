@@ -10,7 +10,7 @@ function ProductSort() {
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { data } = useAllProducts();
-	console.log(data?.meta);
+
 	const totalItems = data?.meta.pagination.total;
 	function onSubmit(data: FormInput) {
 		searchParams.set("order", data.order);

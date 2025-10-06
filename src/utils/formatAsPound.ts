@@ -3,5 +3,6 @@ export const formatAsPound = (price: string | number): string => {
 		style: "currency",
 		currency: "GBP"
 	}).format(Number(price) / 100);
+
 	return poundsAmount;
 };

@@ -1,13 +1,7 @@
-import { useAppSelector } from "@/hooks";
-import { Navigate } from "react-router-dom";
+import ProcessCheckout from "@/features/checkout/ProcessCheckout";
 
 function Checkout() {
-	const user = useAppSelector(state => state.userState.user);
-	console.log(user);
-	if (!user) {
-		return <Navigate to="/logintocheckout" />;
-	}
-	return <div>Checkout!</div>;
+	return <ProcessCheckout />;
 }
 
 export default Checkout;

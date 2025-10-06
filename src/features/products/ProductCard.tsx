@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function ProductCard({ product }: { product: Product }) {
 	const { id } = product;
 	const { image, title, price, company } = product.attributes as ProductAttributes;
+	// console.log(price);
 	return (
 		<Link
 			to={`/products/${id}`}
