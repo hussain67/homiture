@@ -2,7 +2,7 @@ import PaymentForm from "@/components/PaymentForm";
 import ShippingInfoForm from "@/components/ShippingInfoForm";
 import { useAppSelector } from "@/hooks";
 import { formatAsPound } from "@/utils/formatAsPound";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Navigate } from "react-router-dom";
 import CreateOrder from "../orders/CreateOrder";
@@ -19,7 +19,7 @@ function ProcessCheckout() {
 
 	const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
-	useEffect(() => {}, [isPaymentSuccessful]);
+	// useEffect(() => {}, [isPaymentSuccessful]);
 
 	const isNoInfo = info.name === "" && info.address === "";
 	// console.log(info);
@@ -27,7 +27,12 @@ function ProcessCheckout() {
 		return <Navigate to="/logintocheckout" />;
 	}
 	if (isPaymentSuccessful) {
-		return <CreateOrder />;
+		return (
+			<CreateOrder
+				name={info.name}
+				address={info.address}
+			/>
+		);
 	}
 	return (
 		<div className="grid md:grid-cols-2 mx-auto gap-6 md:mt-12">
