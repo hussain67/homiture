@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import CreateOrder from "../orders/CreateOrder";
 
-export type InfoType = {
+export type Info = {
 	name: string;
 	address: string;
 };
@@ -15,11 +15,9 @@ function ProcessCheckout() {
 	const user = useAppSelector(state => state.userState.user);
 	const total = useAppSelector(state => state.cartState.orderTotal);
 
-	const [info, setInfo] = useState<InfoType>({ name: "", address: "" });
+	const [info, setInfo] = useState<Info>({ name: "", address: "" });
 
 	const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
-
-	// useEffect(() => {}, [isPaymentSuccessful]);
 
 	const isNoInfo = info.name === "" && info.address === "";
 	// console.log(info);

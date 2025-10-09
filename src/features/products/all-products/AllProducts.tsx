@@ -12,7 +12,6 @@ function AllProducts() {
 	const pageCount = data?.meta.pagination.pageCount as number;
 
 	if (isLoading) {
-		// return <h1 className="text-7xl">Loading....</h1>;
 		return <Spinner />;
 	}
 	if (error) {

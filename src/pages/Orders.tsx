@@ -1,5 +1,7 @@
+import OrderList from "@/features/orders/OrderList";
+
 function Orders() {
-	return <div>Orders</div>;
+	return <OrderList />;
 }
 
 export default Orders;

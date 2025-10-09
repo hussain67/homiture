@@ -40,7 +40,7 @@ function ProductFilter() {
 		console.log(data);
 	}
 	if (!data) {
-		return <p className="text-red-500">No Data</p>;
+		return;
 	}
 	const { companies = [], categories = [] } = data.meta;
 	// console.log(companies);

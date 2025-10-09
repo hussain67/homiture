@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/hooks";
-import type { OrderInfoType } from "@/types/orderTypes";
+import type { OrderInfo } from "@/types/orderTypes";
 import { formatAsPound } from "@/utils/formatAsPound";
 import { useCreateOrder } from "./useCreateOrder";
 import { useEffect, useMemo } from "react";
@@ -12,16 +12,7 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 	const { createOrder } = useCreateOrder();
 	const { cartItems, cartTotal, orderTotal, numItemsInCart } = useAppSelector(state => state.cartState);
 
-	// const orderInfo: OrderInfoType = {
-	// 	name,
-	// 	address,
-	// 	cartItems,
-	// 	chargeTotal: orderTotal - cartTotal,
-	// 	orderTotal: formatAsPound(orderTotal),
-	// 	numItemsInCart
-	// };
-
-	const orderInfo = useMemo<OrderInfoType>(
+	const orderInfo = useMemo<OrderInfo>(
 		() => ({
 			name,
 			address,

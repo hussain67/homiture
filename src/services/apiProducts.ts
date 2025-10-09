@@ -1,4 +1,3 @@
-import type { OrderInfoType } from "@/types/orderTypes";
 import { type ProductResponse, type SingleProductResponse } from "@/types/productTypes";
 import { axiosInstance } from "@/utils/axiosInstance";
 
@@ -19,25 +18,5 @@ export async function getSingleProduct(productId: string): Promise<SingleProduct
 		return response.data;
 	} catch {
 		throw new Error("Data could not be loaded");
-	}
-}
-
-export async function createOrder(info: OrderInfoType, jwt: string) {
-	try {
-		const result = await axiosInstance.post(
-			"./orders",
-			{ data: info },
-			{
-				headers: {
-					Authorization: `Bearer ${jwt}`
-				}
-			}
-		);
-		console.log(result);
-		return result.data;
-
-		// return redirect("/orders");
-	} catch (error) {
-		console.log(error);
 	}
 }
