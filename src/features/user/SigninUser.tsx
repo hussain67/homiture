@@ -1,13 +1,14 @@
 import SubmitButton from "@/components/SubmitButton";
-import type { LoginData } from "@/types/authenticationTypes";
+import type { SigninData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
-import { useLogin } from "./useLogin";
+import { useSignin } from "./useSgnin";
 import logoLight from "./logo-light.png";
 import logoDark from "./logo-dark.png";
 
 import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
+import useShowComponent from "@/utils/useShowComponent";
 
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
@@ -16,18 +17,21 @@ const divStyle = "flex flex-col gap-3";
 // Signup component
 function LoginUser() {
 	const { theme } = useAppSelector(state => state.themeState);
-	const { login, isPending, error } = useLogin();
-	const errorMsg = error instanceof AxiosError ? "Invalid Email or Password" : "Login failed";
+	const { signin, isPending, error } = useSignin();
+	const errorMsg = error instanceof AxiosError ? "Invalid Email or Password" : "Signin failed";
 
-	const { handleSubmit, register, formState } = useForm<LoginData>();
+	const { handleSubmit, register, formState } = useForm<SigninData>();
 	const { errors } = formState;
 
-	function onSubmit(data: LoginData) {
-		login(data);
+	// For Animation
+
+	const animateForm = useShowComponent(false, 100);
+	function onSubmit(data: SigninData) {
+		signin(data);
 	}
 
 	return (
-		<section className=" h-screen grid place-content-center">
+		<section className={` grid h-full place-content-center ${!animateForm ? "scale-50 opacity-0" : "scale-100 opacity-100 transition-all duration-1500"} `}>
 			<div className="mx-auto mb-6 w-[70px]">
 				<Link to="/">
 					<img

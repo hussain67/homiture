@@ -1,26 +1,24 @@
 import { setTheme } from "@/features/theme/themeSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegMoon } from "react-icons/fa6";
 import { IoSunnyOutline } from "react-icons/io5";
 import type { Theme } from "@/types/themeTypes";
-import { logoutUser } from "@/features/user/userSlice";
+// import { signoutUser } from "@/features/user/userSlice";
 import logoLight from "../assets/logo-light.png";
 import logoDark from "../assets/logo-dark.png";
 
 function Header() {
 	const { theme } = useAppSelector(state => state.themeState);
 	const userName = useAppSelector(state => state.userState.user?.userName);
-
 	const dispatch = useAppDispatch();
-
+	const navigate = useNavigate();
 	//Handle dispatch
-
 	function handleDispatch(theme: Theme) {
 		dispatch(setTheme(theme));
 	}
-	function handleLogout() {
-		dispatch(logoutUser());
+	function handleSignout() {
+		navigate("/signout");
 	}
 	return (
 		<section className="flex gap-6 justify-between items-center">
@@ -38,9 +36,9 @@ function Header() {
 							<span>Hello {userName}</span>
 							<button
 								className="cursor-pointer"
-								onClick={handleLogout}
+								onClick={handleSignout}
 							>
-								Logout
+								Signout
 							</button>
 						</div>
 					)}

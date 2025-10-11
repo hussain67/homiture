@@ -57,15 +57,16 @@ const PaymentForm = ({ isNoInfo, setIsPaymentSuccessful }: PaymentFormPropsType)
 	};
 
 	return (
-		<section className="relative max-w-[450px] p-4">
+		<section className="relative min-w-[350px] lg:min-w-[400px] max-w-[450px] p-4">
 			<form
-				className=" bg-muted  min-w-[400px] w-full h-[200px]  p-4 "
+				className=" bg-muted   w-full h-[200px]  p-4 "
 				onSubmit={paymentHandler}
 			>
 				<h2 className="mb-8 text-xl text-center">Card payment</h2>
 				<div className="border-1 p-1 border-slate-300  mb-8 bg-white">
 					{
 						<CardElement
+							className="w-full"
 							options={{
 								style: {
 									base: {

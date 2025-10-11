@@ -7,6 +7,7 @@ import { useAppSelector } from "@/hooks";
 import logoLight from "./logo-light.png";
 import logoDark from "./logo-dark.png";
 import { Link } from "react-router-dom";
+import useShowComponent from "@/utils/useShowComponent";
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
 const divStyle = "flex flex-col gap-3";
@@ -18,13 +19,14 @@ function SignupUser() {
 	const errorMsg = error instanceof AxiosError ? error.response?.data.error.message : "Registration failed";
 	const { handleSubmit, register, formState } = useForm<SignupData>();
 	const { errors } = formState;
+	const animateForm = useShowComponent(false, 100);
 
 	function onSubmit(data: SignupData) {
 		signup(data);
 	}
 
 	return (
-		<section className=" h-screen grid place-content-center">
+		<section className={`h-screen grid place-content-center  ${!animateForm ? "scale-50 opacity-0" : "scale-100 opacity-100 transition-all duration-1500"}`}>
 			<div className="mx-auto mb-6 w-[70px]">
 				<Link to="/home">
 					<img

@@ -4,7 +4,7 @@ export type SignupData = {
 	username: string;
 };
 
-export type LoginData = {
+export type SigninData = {
 	email: string;
 	password: string;
 };
