@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { login as loginApi } from "@/services/apiAuth";
+import { signin as signinApi } from "@/services/apiAuth";
 import { useAppDispatch } from "@/hooks";
 import { signinUser } from "./userSlice";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ export function useSignin() {
 		error,
 		isPending
 	} = useMutation({
-		mutationFn: loginApi,
+		mutationFn: signinApi,
 		onSuccess: user => {
 			const userData = { jwt: user.jwt, userName: user.user.username };
 			dispatch(signinUser(userData));

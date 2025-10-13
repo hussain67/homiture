@@ -1,16 +1,13 @@
-// import ListItem from "./ListItem";
 import { Link } from "react-router-dom";
 import { useOrders } from "./useOrders";
 import day from "dayjs";
 import { formatAsPound } from "@/utils/formatAsPound";
 import { useAppSelector } from "@/hooks";
+
 function OrderList() {
 	const user = useAppSelector(state => state.userState);
-
-	console.log(user);
 	const { data } = useOrders();
 	const orders = data?.data;
-	console.log(orders);
 	if (!user) {
 		return;
 	}
@@ -43,7 +40,10 @@ function OrderList() {
 								const { image, title, productId, amount, price } = item;
 								const totalProductCost = formatAsPound(amount * Number(price));
 								return (
-									<div className=" grid grid-cols-[150px_1fr_1fr_1fr] gap-8 mb-8 items-center ">
+									<div
+										key={item.cartId}
+										className=" grid grid-cols-[150px_1fr_1fr_1fr] gap-8 mb-8 items-center "
+									>
 										<li>
 											<img
 												src={image}

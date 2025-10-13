@@ -7,7 +7,7 @@ export async function getAllorders(jwt: string): Promise<OrderResponse> {
 			Authorization: `Bearer ${jwt}`
 		}
 	});
-	console.log(orders.data);
+	// console.log(orders.data);
 	return orders.data;
 }
 

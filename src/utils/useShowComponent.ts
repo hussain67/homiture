@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function useShowComponent(show: boolean, time: number) {
 	const [showComponent, setShowComponent] = useState(show);
 
-	setTimeout(() => {
-		setShowComponent(!show);
-	}, time);
+	useEffect(() => {
+		setTimeout(() => {
+			setShowComponent(!show);
+		}, time);
+	}, [time, show]);
+
 	return showComponent;
 }
 

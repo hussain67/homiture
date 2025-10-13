@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
-import Navbar from "./Navbar";
+import HeaderContainer from "./HeaderContainer";
+import DesktopNavbar from "./DesktopNavbar";
 
 function AppLayout() {
 	return (
 		<main className="align-content flex flex-col gap-6">
-			<Header />
-			<Navbar />
+			<HeaderContainer />
+			<DesktopNavbar />
 			<Outlet />
 		</main>
 	);

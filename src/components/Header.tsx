@@ -4,9 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegMoon } from "react-icons/fa6";
 import { IoSunnyOutline } from "react-icons/io5";
 import type { Theme } from "@/types/themeTypes";
-// import { signoutUser } from "@/features/user/userSlice";
-import logoLight from "../assets/logo-light.png";
-import logoDark from "../assets/logo-dark.png";
 
 function Header() {
 	const { theme } = useAppSelector(state => state.themeState);
@@ -21,55 +18,46 @@ function Header() {
 		navigate("/signout");
 	}
 	return (
-		<section className="flex gap-6 justify-between items-center">
-			<Link to="/">
-				<img
-					className="w-[52px]"
-					src={theme === "dark" ? logoDark : logoLight}
-					alt=""
-				/>
-			</Link>
-			<article className="flex gap-5">
-				<div>
-					{userName && (
-						<div className="flex gap-6 capitalize">
-							<span>Hello {userName}</span>
-							<button
-								className="cursor-pointer"
-								onClick={handleSignout}
-							>
-								Signout
-							</button>
-						</div>
-					)}
-					{!userName && (
-						<div className="flex gap-3">
-							<Link to="/signin">Signin </Link>
-							{" / "}
-							<Link to="/signup">Signup</Link>
-						</div>
-					)}
-				</div>
-				<div className="flex items-center text-2xl">
-					{theme === "dark" && (
+		<section className="ml-auto flex gap-5  items-center mr-3">
+			<div>
+				{userName && (
+					<div className="flex gap-6 capitalize">
+						<span>Hello {userName}</span>
 						<button
 							className="cursor-pointer"
-							onClick={() => handleDispatch("light")}
+							onClick={handleSignout}
 						>
-							{" "}
-							<IoSunnyOutline />
+							Signout
 						</button>
-					)}
-					{theme !== "dark" && (
-						<button
-							className="cursor-pointer"
-							onClick={() => handleDispatch("dark")}
-						>
-							<FaRegMoon />{" "}
-						</button>
-					)}
-				</div>
-			</article>
+					</div>
+				)}
+				{!userName && (
+					<div className="flex gap-3">
+						<Link to="/signin">Signin </Link>
+						{"/"}
+						<Link to="/signup">Signup</Link>
+					</div>
+				)}
+			</div>
+			<div className="flex items-center text-2xl">
+				{theme === "dark" && (
+					<button
+						className="cursor-pointer"
+						onClick={() => handleDispatch("light")}
+					>
+						{" "}
+						<IoSunnyOutline />
+					</button>
+				)}
+				{theme !== "dark" && (
+					<button
+						className="cursor-pointer"
+						onClick={() => handleDispatch("dark")}
+					>
+						<FaRegMoon />{" "}
+					</button>
+				)}
+			</div>
 		</section>
 	);
 }

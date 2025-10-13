@@ -13,7 +13,6 @@ function CartListItem({ item }: { item: CartItem }) {
 	useEffect(() => {
 		dispatch(editItem({ cartId, amount: productAmount }));
 	}, [productAmount, dispatch, cartId]);
-	console.log(productAmount);
 
 	function handleDelete() {
 		dispatch(deleteItem({ cartId }));
