@@ -6,16 +6,13 @@ import Spinner from "@/components/Spinner";
 
 function AllProducts() {
 	const { data, error, isLoading } = useAllProducts();
-	// console.log(data);
 	const products = data?.data;
-	// console.log(data?.meta);
 	const pageCount = data?.meta.pagination.pageCount as number;
 
 	if (isLoading) {
 		return <Spinner />;
 	}
 	if (error) {
-		// console.log(error.message);
 		return <Error message={error.message} />;
 	}
 	return (

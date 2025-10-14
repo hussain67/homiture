@@ -1,5 +1,5 @@
-import PaymentForm from "@/components/PaymentForm";
-import ShippingInfoForm from "@/components/ShippingInfoForm";
+import PaymentForm from "@/components/forms/PaymentForm";
+import ShippingInfoForm from "@/components/forms/ShippingInfoForm";
 import { useAppSelector } from "@/hooks";
 import { formatAsPound } from "@/utils/formatAsPound";
 import { useState } from "react";

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useAllProducts } from "./useAllProducts";
 import { Link, useSearchParams } from "react-router-dom";
-import Search from "@/components/Search";
-import Select from "@/components/Select";
-import Range from "@/components/Range";
-import Checkbox from "@/components/Checkbox";
+import Search from "@/components/forms/Search";
+import Select from "@/components/forms/Select";
+import Range from "@/components/forms/Range";
+import Checkbox from "@/components/forms/Checkbox";
 
 export type FormInput = {
 	company: string;
@@ -37,7 +37,7 @@ function ProductFilter() {
 		searchParams.set("page", "1");
 
 		setSearchParams(searchParams);
-		console.log(data);
+		// console.log(data);
 	}
 	if (!data) {
 		return;
