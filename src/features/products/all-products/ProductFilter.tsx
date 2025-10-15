@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAllProducts } from "./useAllProducts";
 import { Link, useSearchParams } from "react-router-dom";
-import Search from "@/components/forms/Search";
 import Select from "@/components/forms/Select";
 import Range from "@/components/forms/Range";
 import Checkbox from "@/components/forms/Checkbox";
@@ -29,7 +28,7 @@ function ProductFilter() {
 		const price = data.price * 100;
 
 		searchParams.set("company", data.company);
-		searchParams.set("search", data.search);
+		searchParams.set("search", "");
 		searchParams.set("category", data.category);
 		searchParams.set("order", data.order);
 		searchParams.set("price", String(price));
@@ -49,8 +48,11 @@ function ProductFilter() {
 		<section>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<article className="grid items-center gap-4 border-1 border-slate-400 p-4 mb-10 ">
-					<Search register={register} />
-
+					<Select
+						options={["a-z", "z-a", "Price: Low to high", "Price: High to low"]}
+						register={register}
+						name="order"
+					/>
 					<Select
 						options={categories}
 						register={register}
@@ -62,12 +64,6 @@ function ProductFilter() {
 						register={register}
 						name="company"
 					/>
-
-					{/* <Select
-						options={["a-z", "z-a", "high", "low"]}
-						register={register}
-						name="order"
-					/> */}
 
 					<Range
 						register={register}

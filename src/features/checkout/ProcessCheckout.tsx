@@ -1,4 +1,3 @@
-import PaymentForm from "@/components/forms/PaymentForm";
 import ShippingInfoForm from "@/components/forms/ShippingInfoForm";
 import { useAppSelector } from "@/hooks";
 import { formatAsPound } from "@/utils/formatAsPound";
@@ -6,6 +5,7 @@ import { useState } from "react";
 
 import { Navigate } from "react-router-dom";
 import CreateOrder from "../orders/CreateOrder";
+import PaymentForm from "@/components/PaymentForm";
 
 export type Info = {
 	name: string;
@@ -41,6 +41,7 @@ function ProcessCheckout() {
 					isNoInfo={isNoInfo}
 					setIsPaymentSuccessful={setIsPaymentSuccessful}
 				/>
+
 				<h2 className="mt-4">{isNoInfo ? "Please provide shipping info before pay." : ""}</h2>
 			</div>
 		</div>

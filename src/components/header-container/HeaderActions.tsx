@@ -12,7 +12,7 @@ function HeaderActions() {
 		navigate("/signout");
 	}
 	return (
-		<section className="ml-auto flex gap-5  items-center mr-3">
+		<section className=" flex gap-5  items-center mr-3">
 			<div>
 				{userName && (
 					<div className="flex gap-6 capitalize">
