@@ -11,6 +11,7 @@ function Search() {
 
 	// Function onSubmit
 	function onSubmit(data: FormInput) {
+		if (data.search === "") return;
 		navigate(`/products?search=${encodeURIComponent(data.search)}`);
 		reset();
 	}

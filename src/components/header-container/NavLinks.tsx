@@ -20,7 +20,7 @@ function NavLinks() {
 					>
 						<NavLink
 							to={path}
-							className={({ isActive }) => `px-3 py-2 capitalize rounded-md transition-all ${isActive ? "bg-blue-500 text-white" : " hover:bg-background"}`}
+							className={({ isActive }) => `px-3 py-2 capitalize rounded-md transition-all ${isActive ? "bg-blue-400 text-white" : " hover:bg-background"}`}
 						>
 							{text}
 						</NavLink>

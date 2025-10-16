@@ -1,5 +1,11 @@
+import Carousel from "@/components/carousel/Carousel";
+
 function Home() {
-	return <div>HOME</div>;
+	return (
+		<div className="mx-auto">
+			<Carousel />
+		</div>
+	);
 }
 
 export default Home;

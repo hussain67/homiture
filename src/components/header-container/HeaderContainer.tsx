@@ -10,7 +10,7 @@ function HeaderContainer() {
 	const [showMobileNav, setShowMobileNav] = useState(false);
 	return (
 		<section className="bg-muted rounded-sm  ">
-			<div className="flex justify-between  items-center p-3 border-b-2 border-silver-200">
+			<div className="flex justify-between  items-center p-3 md:border-b-2 border-silver-200">
 				{/* Absolute component */}
 				<MobileNavbar
 					showMobileNav={showMobileNav}
