@@ -24,8 +24,9 @@ function LoginUser() {
 	const { errors } = formState;
 
 	// For Animation
-
 	const animateForm = useShowComponent(false, 100);
+
+	// Function onSubmit
 	function onSubmit(data: SigninData) {
 		signin(data);
 	}

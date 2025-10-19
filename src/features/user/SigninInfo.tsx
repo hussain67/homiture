@@ -3,6 +3,8 @@ import useShowComponent from "@/utils/useShowComponent";
 function SigninInfo() {
 	const params = new URLSearchParams(location.search);
 	const redirectPath = params.get("redirect");
+
+	// For direct log in we do not need Login inf
 	const time = redirectPath === null ? 0 : 900;
 
 	const showInfo = useShowComponent(true, time);

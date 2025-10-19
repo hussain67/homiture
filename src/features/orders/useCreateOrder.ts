@@ -6,7 +6,11 @@ import type { OrderInfo } from "@/types/orderTypes";
 export function useCreateOrder() {
 	const { user } = useAppSelector(state => state.userState);
 
-	const { mutate: createOrder, isPending: isCreating } = useMutation({
+	const {
+		mutate: createOrder,
+		isPending: isCreating,
+		isSuccess
+	} = useMutation({
 		mutationFn: (info: OrderInfo) => createOrderApi(info, user?.jwt as string),
 		onSuccess(data) {
 			console.log(data);
@@ -15,5 +19,5 @@ export function useCreateOrder() {
 			console.log(err);
 		}
 	});
-	return { createOrder, isCreating };
+	return { createOrder, isCreating, isSuccess };
 }

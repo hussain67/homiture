@@ -11,7 +11,6 @@ import Error from "./pages/Error";
 import Signup from "./pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
-import LoginToCheckout from "./features/checkout/LoginToCheckout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signout from "./features/user/Signout";
 
@@ -55,10 +54,6 @@ function App() {
 									<Checkout />
 								</ProtectedRoute>
 							}
-						/>
-						<Route
-							path="logintocheckout"
-							element={<LoginToCheckout />}
 						/>
 
 						<Route

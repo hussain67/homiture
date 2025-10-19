@@ -1,7 +1,7 @@
-import ProcessCheckout from "@/features/checkout/ProcessCheckout";
+import CheckoutFlow from "@/features/checkout/CheckoutFlow";
 
 function Checkout() {
-	return <ProcessCheckout />;
+	return <CheckoutFlow />;
 }
 
 export default Checkout;

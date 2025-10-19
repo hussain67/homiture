@@ -8,7 +8,6 @@ import PrevArrow from "./PrevArrow";
 
 function Carousel() {
 	const settings = {
-		// dots: true,
 		infinite: true,
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -21,7 +20,7 @@ function Carousel() {
 		pauseOnFocus: true
 	};
 	return (
-		<div className="mx-auto mt-5 w-full max-w-[450px] h-[300px]">
+		<div className="mx-auto mt-5 w-[450px] h-[300px]">
 			<Slider {...settings}>
 				{imageList.map((person, i) => (
 					<article

@@ -22,7 +22,8 @@ export function useSignin() {
 		onSuccess: user => {
 			const userData = { jwt: user.jwt, userName: user.user.username };
 			dispatch(signinUser(userData));
-			navigate(redirectPath);
+
+			navigate(redirectPath, { replace: true });
 		}
 	});
 	return { signin, error, isPending };

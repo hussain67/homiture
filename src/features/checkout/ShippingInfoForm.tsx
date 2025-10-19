@@ -1,12 +1,12 @@
-import type { InfoType } from "@/pages/Checkout";
+import type { ShippingInfo } from "@/features/checkout/CheckoutFlow";
 import { useForm } from "react-hook-form";
 
-function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateAction<InfoType>> }) {
-	const { register, handleSubmit } = useForm<InfoType>();
+function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateAction<ShippingInfo>> }) {
+	const { register, handleSubmit } = useForm<ShippingInfo>();
 
 	// Submit function
 
-	function onSubmit(data: InfoType) {
+	function onSubmit(data: ShippingInfo) {
 		const name = data.name;
 		const address = data.address;
 		setInfo({
@@ -16,7 +16,7 @@ function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateA
 	}
 
 	return (
-		<div className="bg-muted max-w-[450px] p-4">
+		<div className="bg-muted  p-4">
 			<h2 className="text-center text-xl mb-6">Shipping Information</h2>
 			<form
 				className="flex flex-col gap-3"
