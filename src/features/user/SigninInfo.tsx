@@ -5,7 +5,7 @@ function SigninInfo() {
 	const redirectPath = params.get("redirect");
 
 	// For direct log in we do not need Login inf
-	const time = redirectPath === null ? 0 : 900;
+	const time = redirectPath === null ? 0 : 500;
 
 	const showInfo = useShowComponent(true, time);
 
@@ -17,7 +17,7 @@ function SigninInfo() {
 		infoText = "Please Sign in to continue checkout";
 	}
 
-	return <div className={`flex justify-center mt-5 md:mt-10 text-2xl ${showInfo ? "scale-100 opacity-100" : "scale-0 opacity-0 transition-all duration-1500"}`}>{infoText}</div>;
+	return <div className={`flex justify-center mt-5 md:mt-10 text-4xl transition-all duration-3000 ${showInfo ? "scale-100 opacity-100" : "scale-0 opacity-0 "}`}>{infoText}</div>;
 }
 
 export default SigninInfo;

@@ -1,11 +1,11 @@
 import SigninInfo from "@/features/user/SigninInfo";
-import SigninUser from "@/features/user/SigninUser";
+import SigninForm from "@/features/user/SigninForm";
 
 function Signin() {
 	return (
 		<section className="flex flex-col h-screen">
 			<SigninInfo />
-			<SigninUser />
+			<SigninForm />
 		</section>
 	);
 }

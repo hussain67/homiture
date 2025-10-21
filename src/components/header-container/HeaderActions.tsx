@@ -1,28 +1,20 @@
 import { useAppSelector } from "@/hooks";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import CartButton from "./CartButton";
 import ThemeButton from "./ThemeButton";
+import SignoutButton from "@/features/user/SignoutButton";
 
 function HeaderActions() {
 	const userName = useAppSelector(state => state.userState.user?.userName);
-	const navigate = useNavigate();
 
-	function handleSignout() {
-		navigate("/signout");
-	}
 	return (
 		<section className=" flex gap-5  items-center mr-3">
 			<div>
 				{userName && (
 					<div className="flex gap-6 capitalize">
 						<span>Hello {userName}</span>
-						<button
-							className="cursor-pointer"
-							onClick={handleSignout}
-						>
-							Signout
-						</button>
+						<SignoutButton />
 					</div>
 				)}
 				{!userName && (

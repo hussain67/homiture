@@ -32,11 +32,11 @@ function SelectProduct({ productId, productInfo }: { productId: string; productI
 		};
 		setShowInfo(true);
 		dispatch(addItem(newCartItem));
-		setTimeout(() => {
+		const timer = setTimeout(() => {
 			navigate("/products");
 		}, 3000);
+		return () => clearTimeout(timer);
 	}
-	console.log(productAmount);
 	return (
 		<section className="grid xs:px-[10%] sm:px-0 sm:grid-cols-2 gap-5 md:gap-10 relative">
 			<article>

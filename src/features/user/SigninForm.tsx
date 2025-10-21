@@ -1,34 +1,40 @@
-import { useSignup } from "./useSignup";
 import SubmitButton from "@/components/SubmitButton";
-import type { SignupData } from "@/types/authenticationTypes";
+import type { SigninData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
-import { useAppSelector } from "@/hooks";
+import { useSignin } from "./useSgnin";
 import logoLight from "./logo-light.png";
 import logoDark from "./logo-dark.png";
+
+import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
 import useShowComponent from "@/utils/useShowComponent";
+
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
 const divStyle = "flex flex-col gap-3";
 
 // Signup component
-function SignupUser() {
+function SigninForm() {
 	const { theme } = useAppSelector(state => state.themeState);
-	const { signup, isPending, error } = useSignup();
-	const errorMsg = error instanceof AxiosError ? error.response?.data.error.message : "Registration failed";
-	const { handleSubmit, register, formState } = useForm<SignupData>();
-	const { errors } = formState;
-	const animateForm = useShowComponent(false, 100);
+	const { signin, isPending, error } = useSignin();
+	const errorMsg = error instanceof AxiosError ? "Invalid Email or Password" : "Signin failed";
 
-	function onSubmit(data: SignupData) {
-		signup(data);
+	const { handleSubmit, register, formState } = useForm<SigninData>();
+	const { errors } = formState;
+
+	// For Animation
+	const animateForm = useShowComponent(false, 2000);
+
+	// Function onSubmit
+	function onSubmit(data: SigninData) {
+		signin(data);
 	}
 
 	return (
-		<section className={`h-screen grid place-content-center  ${!animateForm ? "scale-50 opacity-0" : "scale-100 opacity-100 transition-all duration-1500"}`}>
+		<section className={` grid h-full place-content-center transition-all duration-1500 ${!animateForm ? "scale-50 opacity-0" : "scale-100 opacity-100 "} `}>
 			<div className="mx-auto mb-6 w-[70px]">
-				<Link to="/home">
+				<Link to="/">
 					<img
 						src={theme === "dark" ? logoDark : logoLight}
 						alt="Homiture logo"
@@ -36,20 +42,9 @@ function SignupUser() {
 				</Link>
 			</div>
 			<article className="bg-muted w-[400px] sm:w-[500px] rounded-md p-6">
-				<h1 className="mb-6 text-3xl text-center">Signup</h1>
+				<h1 className="mb-5 text-3xl text-center"> Signin</h1>
 				<div className="text-center">{error && <span className="text-red-500 text-md ">{errorMsg}</span>}</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className={`${divStyle}`}>
-						<label>User Name</label>
-						<input
-							type="text"
-							className={`${inputStyle}`}
-							{...register("username", {
-								required: "This field is required"
-							})}
-						/>
-						<span className="text-red-400">{errors?.username?.message}</span>
-					</div>
 					<div className={`${divStyle}`}>
 						<label>Email</label>
 						<input
@@ -59,7 +54,7 @@ function SignupUser() {
 								required: "This field is required",
 								pattern: {
 									value: /\S+@\S+\.\S+/,
-									message: "Provide a valid email"
+									message: "Enter a valid email"
 								}
 							})}
 						/>
@@ -82,7 +77,7 @@ function SignupUser() {
 					</div>
 
 					<SubmitButton
-						text="Register"
+						text="Signin"
 						className="w-full"
 						isPending={isPending}
 					/>
@@ -92,4 +87,4 @@ function SignupUser() {
 	);
 }
 
-export default SignupUser;
+export default SigninForm;

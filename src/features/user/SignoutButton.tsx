@@ -4,8 +4,18 @@ import { signoutUser } from "./userSlice";
 
 function Signout() {
 	const dispatch = useAppDispatch();
-	dispatch(signoutUser());
-	return <Navigate to={"/"} />;
+	function handleClick() {
+		dispatch(signoutUser());
+		return <Navigate to={"/"} />;
+	}
+	return (
+		<button
+			className="cursor-pointer"
+			onClick={handleClick}
+		>
+			Signout
+		</button>
+	);
 }
 
 export default Signout;

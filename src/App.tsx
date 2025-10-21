@@ -12,7 +12,7 @@ import Signup from "./pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Signout from "./features/user/Signout";
+import Signout from "./features/user/SignoutButton";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
