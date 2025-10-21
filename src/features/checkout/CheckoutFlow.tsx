@@ -11,7 +11,7 @@ function CheckoutFlow() {
 	const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
 	return (
-		<section className="h-full relative mt-5 md:mt-15">
+		<section className="h-full relative">
 			{isPaymentSuccessful && (
 				<CreateOrder
 					name={shippingInfo.name}

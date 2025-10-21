@@ -1,6 +1,6 @@
 function AboutComp() {
 	return (
-		<section className="max-w-[1000px] mx-auto sm:mt-6 px-4">
+		<section className="max-w-[1000px] mx-auto  px-4">
 			<h1 className="text-center text-2xl tracking-widest mb-10">
 				<span className=" bg-blue-500 text-white py-2 px-4 rounded-sm ">Our Story, Your Space</span>
 			</h1>

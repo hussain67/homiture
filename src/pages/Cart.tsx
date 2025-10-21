@@ -1,14 +1,22 @@
-import CartInfo from "@/features/cart/CartInfo";
-// import { useAppSelector } from "@/hooks";
+import CartList from "@/features/cart/CartList";
+import CartTotal from "@/features/cart/CartTotal";
+import { useAppSelector } from "@/hooks";
 
 function Cart() {
-	// const cartList = useAppSelector(state => console.log(state.cartState));
-	// console.log(cartList);
+	const cartItems = useAppSelector(state => state.cartState.cartItems);
+
+	if (cartItems.length === 0) {
+		return <div className="text-center text-xl md:mt-15  tracking-wider">"You haven’t added any items to your cart yet. Start shopping!" </div>;
+	}
 	return (
-		<main>
-			<h1 className="text-xl border-slate-400 border-b-[.5px] pb-2 mb-8">Cart Items</h1>
-			<CartInfo />
-		</main>
+		<section className="grid lg:grid-cols-12 gap-5 lg:gap-10">
+			<div className="lg:col-span-8">
+				<CartList />
+			</div>
+			<div className="lg:col-span-4">
+				<CartTotal />
+			</div>
+		</section>
 	);
 }
 

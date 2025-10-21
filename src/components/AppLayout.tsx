@@ -9,8 +9,9 @@ function AppLayout() {
 			<div className="block md:hidden">
 				<ProductSearch />
 			</div>
-
-			<Outlet />
+			<div className="mt-3 md:mt-8">
+				<Outlet />
+			</div>
 		</main>
 	);
 }

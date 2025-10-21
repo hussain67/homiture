@@ -18,7 +18,7 @@ function CartListItem({ item }: { item: CartItem }) {
 		dispatch(deleteItem({ cartId }));
 	}
 	return (
-		<section className="mb-8  pb-4 grid sm:grid-cols-[250px_1fr] mx-auto sm:gap-4 sm:pr-4">
+		<section className="mb-2  pb-2 grid sm:grid-cols-[250px_1fr] mx-auto sm:gap-4 sm:pr-4">
 			<img
 				src={image}
 				alt={title}

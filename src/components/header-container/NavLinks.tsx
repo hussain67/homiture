@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 
-function NavLinks() {
+type NavLinksProps = {
+	setShowMobileNav?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+function NavLinks({ setShowMobileNav }: NavLinksProps) {
 	const links = [
 		{ id: 1, path: "/", text: "home" },
 		{ id: 2, path: "about", text: "about" },
@@ -9,6 +12,11 @@ function NavLinks() {
 		{ id: 5, path: "checkout", text: "checkout" },
 		{ id: 6, path: "orders", text: "orders" }
 	];
+	function handleClick() {
+		if (setShowMobileNav) {
+			setShowMobileNav(false);
+		}
+	}
 	return (
 		<>
 			{links.map(link => {
@@ -21,6 +29,7 @@ function NavLinks() {
 						<NavLink
 							to={path}
 							className={({ isActive }) => `px-3 py-2 capitalize rounded-md transition-all ${isActive ? "bg-blue-400 text-white" : " hover:bg-background"}`}
+							onClick={handleClick}
 						>
 							{text}
 						</NavLink>

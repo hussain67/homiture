@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { ProductAttributes } from "@/types/productTypes";
 import SelectProductColor from "./SelectProductColor";
 import SelectProductAmount from "./SelectProductAmount";
@@ -7,13 +8,16 @@ import { formatAsPound } from "@/utils/formatAsPound";
 import type { CartItem } from "@/types/cartTypes";
 import { useAppDispatch } from "@/hooks";
 import { addItem } from "@/features/cart/cartSlice";
+import ConfirmAddItem from "./ConfirmAddItem";
 
-function ProductInfo({ productId, productInfo }: { productId: string; productInfo: ProductAttributes }) {
+function SelectProduct({ productId, productInfo }: { productId: string; productInfo: ProductAttributes }) {
 	const dispatch = useAppDispatch();
 	const { title, image, company, price, description, colors } = productInfo;
 	const poundAmount = formatAsPound(price);
 	const [productColor, setProductColor] = useState(colors.at(0) as string);
 	const [productAmount, setProductAmount] = useState(1);
+	const [showInfo, setShowInfo] = useState(false);
+	const navigate = useNavigate();
 
 	function handleAddProduct() {
 		const newCartItem: CartItem = {
@@ -26,11 +30,15 @@ function ProductInfo({ productId, productInfo }: { productId: string; productInf
 			productColor,
 			company
 		};
+		setShowInfo(true);
 		dispatch(addItem(newCartItem));
+		setTimeout(() => {
+			navigate("/products");
+		}, 3000);
 	}
 	console.log(productAmount);
 	return (
-		<section className="grid xs:px-[10%] sm:px-0 sm:grid-cols-2 gap-5 md:gap-10 ">
+		<section className="grid xs:px-[10%] sm:px-0 sm:grid-cols-2 gap-5 md:gap-10 relative">
 			<article>
 				<img
 					src={image}
@@ -57,16 +65,17 @@ function ProductInfo({ productId, productInfo }: { productId: string; productInf
 					/>
 				</div>
 				<Button
-					className="cursor-pointer"
-					// variant="destructive"
+					className=""
+					disabled={showInfo}
 					type="submit"
 					onClick={handleAddProduct}
 				>
 					Add Product
 				</Button>
 			</article>
+			{showInfo && <ConfirmAddItem />}
 		</section>
 	);
 }
 
-export default ProductInfo;
+export default SelectProduct;
