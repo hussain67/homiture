@@ -3,9 +3,9 @@ import type { SigninData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import { useSignin } from "./useSgnin";
-import logoLight from "./logo-light.png";
-import logoDark from "./logo-dark.png";
 
+import logoDark from "../../assets/logo-dark.png";
+import logoLight from "../../assets/logo-light.png";
 import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
 import useShowComponent from "@/utils/useShowComponent";
@@ -24,7 +24,7 @@ function SigninForm() {
 	const { errors } = formState;
 
 	// For Animation
-	const animateForm = useShowComponent(false, 2000);
+	const animateForm = useShowComponent(false, 200);
 
 	// Function onSubmit
 	function onSubmit(data: SigninData) {
@@ -32,7 +32,7 @@ function SigninForm() {
 	}
 
 	return (
-		<section className={` grid h-full place-content-center transition-all duration-1500 ${!animateForm ? "scale-50 opacity-0" : "scale-100 opacity-100 "} `}>
+		<section className={` grid h-full place-content-center transition-all duration-1500 ${!animateForm ? "scale-50 opacity-5" : "scale-100 opacity-100 "} `}>
 			<div className="mx-auto mb-6 w-[70px]">
 				<Link to="/">
 					<img

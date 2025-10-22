@@ -7,10 +7,7 @@ export type SingleProductResponse = {
 	data: Product;
 	meta: ProductsMeta;
 };
-// export type SingleProductResponse = {
-// 	data: Product;
-// 	meta: object;
-// };
+
 export type Product = {
 	id: string;
 	attributes?: ProductAttributes;

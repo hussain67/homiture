@@ -4,10 +4,11 @@ import type { SignupData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import { useAppSelector } from "@/hooks";
-import logoLight from "./logo-light.png";
-import logoDark from "./logo-dark.png";
+import logoDark from "../../assets/logo-dark.png";
+import logoLight from "../../assets/logo-light.png";
 import { Link } from "react-router-dom";
 import useShowComponent from "@/utils/useShowComponent";
+
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
 const divStyle = "flex flex-col gap-3";

@@ -2,7 +2,7 @@ import { useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
 
 import CartButton from "./CartButton";
-import ThemeButton from "./ThemeButton";
+import ThemeButton from "../../features/theme/ThemeButton";
 import SignoutButton from "@/features/user/SignoutButton";
 
 function HeaderActions() {
@@ -25,7 +25,6 @@ function HeaderActions() {
 					</div>
 				)}
 			</div>
-
 			<ThemeButton />
 			<CartButton />
 		</section>

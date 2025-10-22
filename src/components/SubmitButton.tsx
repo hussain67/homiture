@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
+
 function SubmitButton({ text, className, isPending }: { text: string; className: string; isPending: boolean }) {
 	return (
 		<Button className={className}>

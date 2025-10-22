@@ -20,13 +20,14 @@ export const userSlice = createSlice({
 	reducers: {
 		signinUser: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
-
 			localStorage.setItem("user", JSON.stringify(action.payload));
 		},
 		signoutUser: state => {
 			state.user = null;
 			localStorage.removeItem("user");
-		}
+		},
+
+		redirect: () => {}
 	}
 });
 export const { signinUser, signoutUser } = userSlice.actions;

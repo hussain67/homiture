@@ -4,14 +4,12 @@ import { useAppDispatch } from "@/hooks";
 import { signinUser } from "./userSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
-//
-
 export function useSignin() {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
-	const redirectPath = params.get("redirect") || "/";
+	const redirectPath = params.get("redirect") || "/home";
 
 	const {
 		mutate: signin,

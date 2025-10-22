@@ -5,7 +5,6 @@ export async function getAllProducts(search: string, category: string, company: 
 	try {
 		const params = { search, category, company, order, price, shipping, page };
 		const response = await axiosInstance<ProductResponse>("/products", { params });
-		// console.log(response.data);
 		return response.data;
 	} catch {
 		throw new Error("Data could not be loaded");

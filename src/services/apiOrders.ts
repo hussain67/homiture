@@ -7,7 +7,6 @@ export async function getAllorders(jwt: string): Promise<OrderResponse> {
 			Authorization: `Bearer ${jwt}`
 		}
 	});
-	// console.log(orders.data);
 	return orders.data;
 }
 
@@ -24,8 +23,6 @@ export async function createOrder(info: OrderInfo, jwt: string) {
 		);
 		console.log(result);
 		return result.data;
-
-		// return redirect("/orders");
 	} catch (error) {
 		console.log(error);
 	}

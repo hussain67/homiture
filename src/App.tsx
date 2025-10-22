@@ -12,7 +12,7 @@ import Signup from "./pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Signout from "./features/user/SignoutButton";
+import Signout from "./features/user/Signout";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -48,7 +48,7 @@ function App() {
 							element={<Cart />}
 						/>
 						<Route
-							path="checkout"
+							path="/checkout"
 							element={
 								<ProtectedRoute>
 									<Checkout />
@@ -57,7 +57,7 @@ function App() {
 						/>
 
 						<Route
-							path="orders"
+							path="/orders"
 							element={
 								<ProtectedRoute>
 									<Orders />

@@ -27,38 +27,3 @@ function Range({ register, watch }: RangePropsType) {
 }
 
 export default Range;
-
-// type RangePropType = {
-// 	Controller:Controller<FormInput>;
-// 	control:;
-// 	register:UseFormRegister<FormInput>;
-// }
-
-// function Range({ Controller, control, register }) {
-// 	return (
-// 		<div>
-// 			<Controller
-// 				name="price"
-// 				control={control}
-// 				render={({ field }) => (
-// 					<>
-// 						<label className=" font-medium flex justify-between">
-// 							Price: <span className="font-bold">{field.value}</span>
-// 						</label>
-// 						<input
-// 							type="range"
-// 							min="0"
-// 							max="100000"
-// 							step="10"
-// 							{...field}
-// 							{...register("price")}
-// 							className="w-full accent-blue-600"
-// 						/>
-// 					</>
-// 				)}
-// 			/>
-// 		</div>
-// 	);
-// }
-
-// export default Range;

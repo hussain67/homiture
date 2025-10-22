@@ -1,12 +1,9 @@
-import { useAppDispatch } from "@/hooks";
-import { Navigate } from "react-router-dom";
-import { signoutUser } from "./userSlice";
+import { useNavigate } from "react-router-dom";
 
 function Signout() {
-	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	function handleClick() {
-		dispatch(signoutUser());
-		return <Navigate to={"/"} />;
+		navigate("/signout", { replace: true });
 	}
 	return (
 		<button

@@ -5,7 +5,6 @@ function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateA
 	const { register, handleSubmit } = useForm<ShippingInfo>();
 
 	// Submit function
-
 	function onSubmit(data: ShippingInfo) {
 		const name = data.name;
 		const address = data.address;
