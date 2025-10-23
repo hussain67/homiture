@@ -1,14 +1,20 @@
 import Carousel from "@/components/carousel/Carousel";
 import HeroInfo from "@/components/HeroInfo";
+import FeaturedProducts from "@/features/products/featured-products/FeaturedProducts";
 
 function Home() {
 	return (
-		<section className="mx-auto lg:flex lg:gap-15">
-			<HeroInfo />
-			<div className="hidden lg:block">
-				<Carousel />
-			</div>
-		</section>
+		<main>
+			<section className="mx-auto lg:flex lg:gap-10">
+				<HeroInfo />
+				<div className="hidden lg:block">
+					<Carousel />
+				</div>
+			</section>
+			<section>
+				<FeaturedProducts />
+			</section>
+		</main>
 	);
 }
 
