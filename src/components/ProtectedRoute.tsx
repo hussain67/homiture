@@ -1,9 +1,10 @@
 import { useAppSelector } from "@/hooks";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	const { user } = useAppSelector(state => state.userState);
-	const location = useLocation();
+	const location = window.location;
+
 	if (!user) {
 		return (
 			<Navigate

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-function Signout() {
+function SignoutButton() {
 	const navigate = useNavigate();
 	function handleClick() {
-		navigate("/signout", { replace: true });
+		navigate("/signout");
 	}
 	return (
 		<button
@@ -15,4 +15,4 @@ function Signout() {
 	);
 }
 
-export default Signout;
+export default SignoutButton;
