@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { createOrder as createOrderApi } from "@/services/apiOrders";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import type { OrderInfo } from "@/types/orderTypes";
+import { clearCart } from "../cart/cartSlice";
 
 export function useCreateOrder() {
 	const { user } = useAppSelector(state => state.userState);
+	const dispatch = useAppDispatch();
 
 	const {
 		mutate: createOrder,
@@ -12,11 +14,11 @@ export function useCreateOrder() {
 		isSuccess
 	} = useMutation({
 		mutationFn: (info: OrderInfo) => createOrderApi(info, user?.jwt as string),
-		onSuccess(data) {
-			console.log(data);
+		onSuccess() {
+			dispatch(clearCart());
 		},
-		onError(err) {
-			console.log(err);
+		onError() {
+			throw new Error("Order Could not be created");
 		}
 	});
 	return { createOrder, isCreating, isSuccess };

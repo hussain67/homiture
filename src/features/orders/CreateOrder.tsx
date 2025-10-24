@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import type { OrderInfo } from "@/types/orderTypes";
 import { formatAsPound } from "@/utils/formatAsPound";
 import { useCreateOrder } from "./useCreateOrder";
@@ -15,10 +15,13 @@ export type CreateOrderPropsType = {
 
 // Function
 function CreateOrder({ name, address }: CreateOrderPropsType) {
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 	const { createOrder, isCreating, isSuccess } = useCreateOrder();
 	const { cartItems, cartTotal, orderTotal, numItemsInCart } = useAppSelector(state => state.cartState);
-	const navigate = useNavigate();
 	const showInfo = useShowComponent(true, 500);
+
+	// Order Information
 	const orderInfo = useMemo<OrderInfo>(
 		() => ({
 			name,
@@ -37,11 +40,12 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 	// Navigate to home page after placing order
 	useEffect(() => {
 		if (!isSuccess) return;
+
 		const timer = window.setTimeout(() => {
 			navigate("/");
 		}, 3500);
 		return () => window.clearTimeout(timer);
-	}, [isSuccess, navigate]);
+	}, [isSuccess, navigate, dispatch]);
 
 	if (isCreating) {
 		return <CheckoutStatus />;

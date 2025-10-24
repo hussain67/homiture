@@ -21,7 +21,6 @@ export async function createOrder(info: OrderInfo, jwt: string) {
 				}
 			}
 		);
-		console.log(result);
 		return result.data;
 	} catch (error) {
 		console.log(error);
