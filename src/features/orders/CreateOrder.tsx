@@ -42,6 +42,16 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 		if (!isSuccess) return;
 
 		const timer = window.setTimeout(() => {
+			const isLocal = window.location.hostname === "localhost";
+
+			if (isLocal) {
+				// For local dev, just navigate within local app
+				navigate("/");
+			} else {
+				// In production or preview, force redirect to live domain
+				window.location.href = "https://homiture.netlify.app/";
+			}
+
 			navigate("/");
 		}, 3500);
 		return () => window.clearTimeout(timer);
