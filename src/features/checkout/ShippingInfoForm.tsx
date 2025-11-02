@@ -1,5 +1,7 @@
 import type { ShippingInfo } from "@/features/checkout/CheckoutFlow";
+// import { useAppDispatch } from "@/hooks";
 import { useForm } from "react-hook-form";
+// import { addAddress } from "../user/userSlice";
 
 function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateAction<ShippingInfo>> }) {
 	const { register, handleSubmit } = useForm<ShippingInfo>();
@@ -8,6 +10,7 @@ function ShippingInfoForm({ setInfo }: { setInfo: React.Dispatch<React.SetStateA
 	function onSubmit(data: ShippingInfo) {
 		const name = data.name;
 		const address = data.address;
+		// dispatch(addAddress({ street: data.address }));
 		setInfo({
 			name,
 			address

@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signout from "./features/user/Signout";
+import NewOrder from "./pages/NewOrder";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -56,6 +57,14 @@ function App() {
 							}
 						/>
 
+						<Route
+							path="/new-order"
+							element={
+								<ProtectedRoute>
+									<NewOrder />
+								</ProtectedRoute>
+							}
+						/>
 						<Route
 							path="/orders"
 							element={

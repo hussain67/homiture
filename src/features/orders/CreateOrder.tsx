@@ -37,7 +37,7 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 		createOrder(orderInfo);
 	}, [createOrder, orderInfo]);
 
-	// Navigate to home page after placing order
+	// Navigate to new order page after placing order
 	useEffect(() => {
 		if (!isSuccess) return;
 
@@ -46,14 +46,12 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 
 			if (isLocal) {
 				// For local dev, just navigate within local app
-				navigate("/");
+				navigate("/new-order");
 			} else {
 				// In production or preview, force redirect to live domain
 				window.location.href = "https://homiture.netlify.app/";
 			}
-
-			navigate("/");
-		}, 3500);
+		}, 2500);
 		return () => window.clearTimeout(timer);
 	}, [isSuccess, navigate, dispatch]);
 

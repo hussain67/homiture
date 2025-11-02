@@ -8,9 +8,8 @@ function NavLinks({ setShowMobileNav }: NavLinksProps) {
 		{ id: 1, path: "/", text: "home" },
 		{ id: 2, path: "about", text: "about" },
 		{ id: 3, path: "products", text: "products" },
-		{ id: 4, path: "cart", text: "cart" },
-		{ id: 5, path: "checkout", text: "checkout" },
-		{ id: 6, path: "orders", text: "orders" }
+
+		{ id: 4, path: "orders", text: "orders" }
 	];
 	function handleClick() {
 		if (setShowMobileNav) {
