@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import type { ProductAttributes } from "@/types/productTypes";
 import SelectProductColor from "./SelectProductColor";
 import SelectProductAmount from "./SelectProductAmount";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/buttons/button";
 import { formatAsPound } from "@/utils/formatAsPound";
 import type { CartItem } from "@/types/cartTypes";
 import { useAppDispatch } from "@/hooks";
@@ -16,29 +16,28 @@ function SelectProduct({ productId, productInfo }: { productId: string; productI
 	const poundAmount = formatAsPound(price);
 	const [productColor, setProductColor] = useState(colors.at(0) as string);
 	const [productAmount, setProductAmount] = useState(1);
-	const [showInfo, setShowInfo] = useState(false);
-	const navigate = useNavigate();
-
+	const [showAddItem, setShowAddItem] = useState(false);
+	// const navigate = useNavigate();
+	const newCartItem: CartItem = {
+		cartId: productId + productColor,
+		productId,
+		image,
+		title,
+		price,
+		amount: productAmount,
+		productColor,
+		company
+	};
 	function handleAddProduct() {
-		const newCartItem: CartItem = {
-			cartId: productId + productColor,
-			productId,
-			image,
-			title,
-			price,
-			amount: productAmount,
-			productColor,
-			company
-		};
-		setShowInfo(true);
+		setShowAddItem(true);
 		dispatch(addItem(newCartItem));
-		const timer = setTimeout(() => {
-			navigate("/products");
-		}, 3000);
-		return () => clearTimeout(timer);
+		// const timer = setTimeout(() => {
+		// 	navigate("/products");
+		// }, 3000);
+		// return () => clearTimeout(timer);
 	}
 	return (
-		<section className="grid xs:px-[10%] sm:px-0 sm:grid-cols-2 gap-5 md:gap-10 relative">
+		<section className="grid xs:px-[10%] sm:px-0 sm:grid-cols-2 gap-5 md:gap-10 overflow-hidden">
 			<article>
 				<img
 					src={image}
@@ -65,15 +64,20 @@ function SelectProduct({ productId, productInfo }: { productId: string; productI
 					/>
 				</div>
 				<Button
-					className=""
-					disabled={showInfo}
+					className="bg-blue-600 hover:bg-blue-500 text-white"
+					disabled={showAddItem}
 					type="submit"
 					onClick={handleAddProduct}
 				>
 					Add Product
 				</Button>
 			</article>
-			{showInfo && <ConfirmAddItem />}
+
+			<ConfirmAddItem
+				showAddItem={showAddItem}
+				setShowAddItem={setShowAddItem}
+				newCartItem={newCartItem}
+			/>
 		</section>
 	);
 }

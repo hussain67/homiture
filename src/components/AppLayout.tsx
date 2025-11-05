@@ -4,7 +4,7 @@ import ProductSearch from "./forms/Search";
 
 function AppLayout() {
 	return (
-		<main className="align-content flex flex-col min-h-screen gap-6">
+		<main className="align-content flex flex-col min-h-screen gap-6 ">
 			<HeaderContainer />
 			<div className="block md:hidden">
 				<ProductSearch />

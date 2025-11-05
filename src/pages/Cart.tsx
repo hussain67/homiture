@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
+import CheckoutButton from "@/components/buttons/RouteButton";
 import CartList from "@/features/cart/CartList";
 import CartTotal from "@/features/cart/CartTotal";
 import { useAppSelector } from "@/hooks";
-import { Link } from "react-router-dom";
 function Cart() {
 	const cartItems = useAppSelector(state => state.cartState.cartItems);
 
@@ -16,14 +15,7 @@ function Cart() {
 			</div>
 			<div className=" grid justify-center sm:justify-end ">
 				<CartTotal />
-				<div className="mt-5 ">
-					<Button
-						asChild
-						className="bg-blue-500 hover:bg-blue-400 text-white tracking-wider w-[150px]"
-					>
-						<Link to="/checkout">Go to Checkout</Link>
-					</Button>
-				</div>
+				<CheckoutButton />
 			</div>
 		</section>
 	);

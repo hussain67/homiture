@@ -1,5 +1,4 @@
 import { useSignup } from "./useSignup";
-import SubmitButton from "@/components/SubmitButton";
 import type { SignupData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
@@ -8,6 +7,7 @@ import logoDark from "../../assets/logo-dark.png";
 import logoLight from "../../assets/logo-light.png";
 import { Link } from "react-router-dom";
 import useShowComponent from "@/utils/useShowComponent";
+import SubmitButton from "@/components/buttons/SubmitButton";
 
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
@@ -84,7 +84,6 @@ function SignupForm() {
 
 					<SubmitButton
 						text="Register"
-						className="w-full"
 						isPending={isPending}
 					/>
 				</form>

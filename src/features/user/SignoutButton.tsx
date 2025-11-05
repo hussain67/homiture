@@ -1,3 +1,4 @@
+import { Button } from "@/components/buttons/button";
 import { useNavigate } from "react-router-dom";
 
 function SignoutButton() {
@@ -6,12 +7,13 @@ function SignoutButton() {
 		navigate("/signout");
 	}
 	return (
-		<button
-			className="cursor-pointer"
+		<Button
+			variant="outline"
+			className="border-none text-lg"
 			onClick={handleClick}
 		>
-			Signout
-		</button>
+			Sign out
+		</Button>
 	);
 }
 

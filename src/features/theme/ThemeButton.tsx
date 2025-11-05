@@ -3,6 +3,7 @@ import { IoSunnyOutline } from "react-icons/io5";
 import { setTheme } from "@/features/theme/themeSlice";
 import type { Theme } from "@/types/themeTypes";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { Button } from "@/components/buttons/button";
 
 function ThemeButton() {
 	const { theme } = useAppSelector(state => state.themeState);
@@ -15,21 +16,24 @@ function ThemeButton() {
 	return (
 		<div className="flex items-center text-xl">
 			{theme === "dark" && (
-				<button
-					className="cursor-pointer"
+				<Button
 					onClick={() => handleDispatch("light")}
+					variant={"outline"}
+					className="border-none"
 				>
 					{" "}
 					<IoSunnyOutline />
-				</button>
+				</Button>
 			)}
+
 			{theme !== "dark" && (
-				<button
-					className="cursor-pointer"
+				<Button
+					variant={"outline"}
+					className="border-none"
 					onClick={() => handleDispatch("dark")}
 				>
 					<FaRegMoon />{" "}
-				</button>
+				</Button>
 			)}
 		</div>
 	);

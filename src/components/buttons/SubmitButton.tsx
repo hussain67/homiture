@@ -1,9 +1,9 @@
-import { Button } from "./ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { Button } from "./button";
 
-function SubmitButton({ text, className, isPending }: { text: string; className: string; isPending: boolean }) {
+function SubmitButton({ text, isPending }: { text: string; isPending: boolean }) {
 	return (
-		<Button className={className}>
+		<Button className="w-full bg-blue-500 text-white hover:bg-blue-400">
 			{isPending && (
 				<span className="flex">
 					<ReloadIcon className="mr-2 h-4 w-4 animate-spin" />

@@ -1,4 +1,4 @@
-import SubmitButton from "@/components/SubmitButton";
+import { Link } from "react-router-dom";
 import type { SigninData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
@@ -7,12 +7,12 @@ import { useSignin } from "./useSgnin";
 import logoDark from "../../assets/logo-dark.png";
 import logoLight from "../../assets/logo-light.png";
 import { useAppSelector } from "@/hooks";
-import { Link } from "react-router-dom";
 import useShowComponent from "@/utils/useShowComponent";
+import SubmitButton from "@/components/buttons/SubmitButton";
 
 // Style
 const inputStyle = "border-slate-400 border-[1px] py-1 px-2 rounded-sm bg-background";
-const divStyle = "flex flex-col gap-3";
+const divStyle = "flex flex-col gap-3 mb-2";
 
 // Signup component
 function SigninForm() {
@@ -60,7 +60,7 @@ function SigninForm() {
 						/>
 						<span className="text-red-400">{errors?.email?.message}</span>
 					</div>
-					<div className={`${divStyle}`}>
+					<div className={`${divStyle} mb-3`}>
 						<label>Password</label>
 						<input
 							type="password"
@@ -75,10 +75,8 @@ function SigninForm() {
 						/>
 						<span className="text-red-400">{errors?.password?.message}</span>
 					</div>
-
 					<SubmitButton
-						text="Signin"
-						className="w-full"
+						text="Sign in"
 						isPending={isPending}
 					/>
 				</form>

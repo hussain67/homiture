@@ -46,7 +46,7 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 
 			if (isLocal) {
 				// For local dev, just navigate within local app
-				navigate("/new-order");
+				navigate("/new-order", { replace: true });
 			} else {
 				// In production or preview, force redirect to live domain
 				window.location.href = "https://homiture.netlify.app/";
