@@ -8,8 +8,8 @@ function SignoutButton() {
 	}
 	return (
 		<Button
-			variant="outline"
-			className="border-none text-lg"
+			variant="link"
+			className="border-none text-md "
 			onClick={handleClick}
 		>
 			Sign out

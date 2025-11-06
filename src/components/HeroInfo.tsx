@@ -9,7 +9,7 @@ function HeroInfo() {
 			<p className="font-semibold mb-2 text-lg">Your dream space is just a few clicks away.</p>
 
 			<RouteButton
-				to="/product"
+				to="/products"
 				text="Our products"
 				variant="brand"
 				className="mt-4 tracking-wide text-lg"

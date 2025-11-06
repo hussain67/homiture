@@ -19,7 +19,7 @@ function ThemeButton() {
 				<Button
 					onClick={() => handleDispatch("light")}
 					variant={"outline"}
-					className="border-none"
+					className="border-none rounded-full"
 				>
 					{" "}
 					<IoSunnyOutline />
@@ -29,7 +29,7 @@ function ThemeButton() {
 			{theme !== "dark" && (
 				<Button
 					variant={"outline"}
-					className="border-none"
+					className="border-none rounded-full"
 					onClick={() => handleDispatch("dark")}
 				>
 					<FaRegMoon />{" "}

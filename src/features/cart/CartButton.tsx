@@ -10,7 +10,7 @@ function CartButton() {
 	}
 	return (
 		<Button
-			className=" relative"
+			className=" relative border-none rounded-full"
 			onClick={onClick}
 			variant={"outline"}
 		>
