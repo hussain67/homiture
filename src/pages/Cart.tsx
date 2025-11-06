@@ -1,4 +1,4 @@
-import CheckoutButton from "@/components/buttons/RouteButton";
+import RouteButton from "@/components/buttons/RouteButton";
 import CartList from "@/features/cart/CartList";
 import CartTotal from "@/features/cart/CartTotal";
 import { useAppSelector } from "@/hooks";
@@ -13,9 +13,14 @@ function Cart() {
 			<div className="">
 				<CartList />
 			</div>
-			<div className=" grid justify-center sm:justify-end ">
+			<div className=" grid justify-center sm:justify-end h-28">
 				<CartTotal />
-				<CheckoutButton />
+				<RouteButton
+					to="/checkout"
+					text="Checkout"
+					className="mt-4"
+					variant="brand"
+				/>
 			</div>
 		</section>
 	);

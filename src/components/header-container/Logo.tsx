@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
+import { FiHome } from "react-icons/fi";
 
-import logoLight from "../../assets/logo-light.png";
-import logoDark from "../../assets/logo-dark.png";
-import { useAppSelector } from "@/hooks";
 function Logo() {
-	const { theme } = useAppSelector(state => state.themeState);
 	return (
 		<Link
 			to="/"
-			className="hidden md:block"
+			className=""
 		>
-			<img
-				className="w-[52px]"
-				src={theme === "dark" ? logoDark : logoLight}
-				alt=""
-			/>
+			<div className="bg-blue-500  flex px-3 py-2 items-center tracking-widest text-white rounded-sm ">
+				<span className="text-2xl">
+					<FiHome className="text5xl" />
+				</span>
+				<h1>
+					<span className="text-2xl ">iture</span>
+					<span className=" font-extrabold">.</span>
+
+					<span className="text-black">com</span>
+				</h1>
+			</div>
 		</Link>
 	);
 }
