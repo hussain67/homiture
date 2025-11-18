@@ -13,9 +13,6 @@ function Logo() {
 				</span>
 				<h1>
 					<span className="text-xl sm:text-2xl ">iture</span>
-					<span className=" font-extrabold">.</span>
-
-					<span className="text-black">com</span>
 				</h1>
 			</div>
 		</Link>
