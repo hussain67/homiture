@@ -20,7 +20,7 @@ function Carousel() {
 		pauseOnFocus: true
 	};
 	return (
-		<div className="mx-auto mt-5 w-[450px] h-[300px]">
+		<div className="mx-auto w-[450px] h-[300px]">
 			<Slider {...settings}>
 				{imageList.map((person, i) => (
 					<article
@@ -30,7 +30,7 @@ function Carousel() {
 						<img
 							src={person}
 							alt={"Image1"}
-							className="w-[500px] h-[300px] object-cover  border border-gray-300"
+							className="w-[450px] h-[300px] object-cover  border border-gray-300"
 						/>
 					</article>
 				))}
