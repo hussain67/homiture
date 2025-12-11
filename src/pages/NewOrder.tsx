@@ -3,8 +3,7 @@ import OrderItem from "@/features/orders/OrderItem";
 import { useOrders } from "@/features/orders/useOrders";
 import { useAppDispatch } from "@/hooks";
 import type { OrderAttributes } from "@/types/orderTypes";
-// import type { Order } from "@/types/orderTypes";
-// import type { Order } from "@/types/orderTypes";
+
 import { useEffect } from "react";
 
 function NewOrder() {
