@@ -87,8 +87,6 @@ const PaymentForm = ({ shippingInfo, setShippingInfo, setIsPaymentSuccessful }: 
 			} else {
 				setAlertMessage("Something Went wrong.Please try again");
 			}
-		} finally {
-			setIsProcessingPayment(false);
 		}
 	};
 

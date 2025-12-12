@@ -49,7 +49,7 @@ function CreateOrder({ name, address }: CreateOrderPropsType) {
 				navigate("/new-order", { replace: true });
 			} else {
 				// In production or preview, force redirect to live domain
-				window.location.href = "https://homiture.netlify.app/";
+				window.location.href = "https://homiture.netlify.app/new-order";
 			}
 		}, 2500);
 		return () => window.clearTimeout(timer);
