@@ -5,6 +5,7 @@ import ShippingInfoForm from "@/features/checkout/ShippingInfoForm";
 import { formatAsPound } from "@/utils/formatAsPound";
 import type { ShippingInfo } from "@/features/checkout/CheckoutFlow";
 import CheckoutStatus from "./CheckoutStatus";
+import Alert from "@/components/Alert";
 
 // Type
 type PaymentFormProps = {
@@ -22,88 +23,134 @@ const PaymentForm = ({ shippingInfo, setShippingInfo, setIsPaymentSuccessful }: 
 	const currentUser = useAppSelector(state => state.userState.user?.userName);
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 	const hasShippingInfo = shippingInfo.name !== "" && shippingInfo.address !== "";
+	const [isCardComplete, setIsCardComplete] = useState(false);
+	const [alertMessage, setAlertMessage] = useState("");
+
+	function fetchWithTimeout(url: string, options: RequestInit, timeout = 15000): Promise<Response> {
+		return Promise.race<Response>([fetch(url, options), new Promise<Response>((_, reject) => setTimeout(() => reject(new Error("Request timed out")), timeout))]);
+	}
 
 	const paymentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!stripe || !elements) {
 			return;
 		}
-		const cardElement = elements.getElement(CardElement); // ✅ inside
+		const cardElement = elements.getElement(CardElement);
 		if (!cardElement) return;
+		if (!isCardComplete) {
+			setAlertMessage("Please complete your card details.");
+			return;
+		}
 		setIsProcessingPayment(true);
-		// Response
-		const response = await fetch("/.netlify/functions/create-payment-intent", {
-			method: "post",
-			headers: {
-				"Content-type": "application/json"
-			},
-			// body: JSON.stringify({ amount: 100 })
-			body: JSON.stringify({ amount: total * 100 })
-		}).then(res => res.json());
+		try {
+			const res = await fetchWithTimeout(
+				"/.netlify/functions/create-payment-intent",
+				{
+					method: "post",
+					headers: {
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify({ amount: total * 100 })
+				},
+				15000
+			);
 
-		const {
-			paymentIntent: { client_secret }
-		} = response;
-		const paymentResult = await stripe.confirmCardPayment(client_secret, {
-			payment_method: {
-				card: cardElement,
-				billing_details: {
-					name: currentUser ? currentUser : "Guest"
+			if (!res.ok) {
+				const text = await res.text();
+				console.log(text);
+				throw new Error("Something went wrong");
+			}
+			const response = await res.json();
+			const {
+				paymentIntent: { client_secret }
+			} = response;
+			const paymentResult = await stripe.confirmCardPayment(client_secret, {
+				payment_method: {
+					card: cardElement,
+					billing_details: {
+						name: currentUser ? currentUser : "Guest"
+					}
+				}
+			});
+			//  Handle stripe error
+			if (paymentResult.error) {
+				setAlertMessage(paymentResult.error.message as string);
+			} else {
+				if (paymentResult.paymentIntent.status === "succeeded") {
+					setIsProcessingPayment(false);
+					setIsPaymentSuccessful(true);
 				}
 			}
-		});
-
-		if (paymentResult.error) {
-			alert(paymentResult.error.message);
-		} else {
-			if (paymentResult.paymentIntent.status === "succeeded") {
-				setIsProcessingPayment(false);
-				setIsPaymentSuccessful(true);
+		} catch (error) {
+			if (error instanceof Error) {
+				setAlertMessage("Error in processing payment");
+			} else {
+				setAlertMessage("Something Went wrong.Please try again");
 			}
+		} finally {
+			setIsProcessingPayment(false);
 		}
 	};
 
 	return (
-		<section className="grid md:grid-cols-2 mx-auto max-w-[450px] md:max-w-[900px] gap-6 ">
-			<ShippingInfoForm setInfo={setShippingInfo} />
-			<div className="relative">
-				<h1 className="text-center mb-4">Total: {formatAsPound(total * 100)}</h1>
+		<main>
+			{alertMessage && (
+				<Alert
+					description={alertMessage}
+					onClose={() => setAlertMessage("")}
+					variant="destructive"
+					className="text-center y-20 py-20 w-[50%]  text-xl absolute top-[15%] left-1/2 -translate-x-1/2 z-100 bg-red-400 text-white"
+				/>
+			)}
+			<section className="grid md:grid-cols-2 mx-auto max-w-[450px] md:max-w-[900px] gap-6 ">
+				<ShippingInfoForm setInfo={setShippingInfo} />
+				<div className="relative">
+					<h1 className="text-center mb-4">Total: {formatAsPound(total * 100)}</h1>
 
-				<form
-					className=" bg-muted   w-full h-[200px]  p-4 "
-					onSubmit={paymentHandler}
-				>
-					<h2 className="mb-8 text-xl text-center">Card payment</h2>
-					<div className="border-1 p-1 border-slate-300  mb-8 bg-white">
-						{
-							<CardElement
-								className="w-full"
-								options={{
-									style: {
-										base: {
-											fontSize: "16px",
+					<form
+						className=" bg-muted   w-full h-[200px]  p-4 "
+						onSubmit={paymentHandler}
+					>
+						<h2 className="mb-8 text-xl text-center">Card payment</h2>
+						<div className="border-1 p-1 border-slate-300  mb-8 bg-white">
+							{
+								<CardElement
+									className="w-full"
+									onChange={event => {
+										setIsCardComplete(event.complete);
+									}}
+									options={{
+										style: {
+											base: {
+												fontSize: "16px",
 
-											lineHeight: "24px",
-											// color: "#32325d",
-											backgroundColor: "white",
-											"::placeholder": { fontStyle: "italic" }
-										}
-									},
-									hidePostalCode: true
-								}}
-							/>
-						}
-					</div>
-					<div className=" text-white">
-						<button className={`bg-blue-500 px-3 py-1 w-[50%] flex justify-center rounded-sm cursor-pointer disabled:cursor-not-allowed tracking-wider`}>Submit order</button>
-					</div>
-				</form>
-				<h2 className="mt-4">{hasShippingInfo ? " " : "Please provide shipping info before pay."}</h2>
+												lineHeight: "24px",
+												// color: "#32325d",
+												backgroundColor: "white",
+												"::placeholder": { fontStyle: "italic" }
+											}
+										},
+										hidePostalCode: true
+									}}
+								/>
+							}
+						</div>
+						<div className=" text-white">
+							<button
+								disabled={alertMessage ? true : false}
+								className={`bg-blue-500 px-3 py-1 w-[50%] flex justify-center rounded-sm cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 tracking-wider`}
+							>
+								Submit order
+							</button>
+						</div>
+					</form>
+					<h2 className="p-4 text-center">{hasShippingInfo ? " " : "Please provide shipping info before pay."}</h2>
 
-				{!hasShippingInfo && <div className="absolute inset-0 bg-primary opacity-30 flex items-center justify-center z-1"></div>}
-			</div>
-			<div>{isProcessingPayment && <CheckoutStatus />}</div>
-		</section>
+					{!hasShippingInfo && <div className="absolute inset-0 bg-primary opacity-30 flex items-center justify-center z-1"></div>}
+				</div>
+				<div>{isProcessingPayment && <CheckoutStatus />}</div>
+			</section>
+		</main>
 	);
 };
 export default PaymentForm;
