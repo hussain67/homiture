@@ -53,7 +53,7 @@ function OrderItem({ order, orderId }: { order: OrderAttributes; orderId: string
 							<li>
 								<Link
 									to={`/products/${productId}`}
-									className="bg-muted px-4 py-1 rounded-md tracking-widest cursor-pointer"
+									className=" bg-muted sm:px-3 sm:py-1 rounded-md tracking-widest cursor-pointer"
 								>
 									View Item
 								</Link>

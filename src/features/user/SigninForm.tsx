@@ -1,7 +1,7 @@
 import type { SigninData } from "@/types/authenticationTypes";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
-import { useSignin } from "./useSgnin";
+import { useSignin } from "./useSignin";
 
 import useShowComponent from "@/utils/useShowComponent";
 import SubmitButton from "@/components/buttons/SubmitButton";
@@ -37,10 +37,13 @@ function SigninForm() {
 				<div className="text-center">{error && <span className="text-red-500 text-md ">{errorMsg}</span>}</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className={`${divStyle}`}>
-						<label>Email</label>
+						<label htmlFor="email">Email</label>
 						<input
+							id="email"
 							type="email"
 							className={`${inputStyle}`}
+							aria-invalid={!!errors.email}
+							aria-describedby={error ? "email-error" : undefined}
 							{...register("email", {
 								required: "This field is required",
 								pattern: {
@@ -49,12 +52,21 @@ function SigninForm() {
 								}
 							})}
 						/>
-						<span className="text-red-400">{errors?.email?.message}</span>
+						<span
+							id="email-error"
+							role="alert"
+							className="text-red-400"
+						>
+							{errors?.email?.message}
+						</span>
 					</div>
 					<div className={`${divStyle} mb-3`}>
-						<label>Password</label>
+						<label htmlFor="password">Password</label>
 						<input
+							id="password"
 							type="password"
+							aria-invalid={!!errors.password}
+							aria-describedby={error ? "password-error" : undefined}
 							className={`${inputStyle}`}
 							{...register("password", {
 								required: "This field is required",
@@ -64,7 +76,12 @@ function SigninForm() {
 								}
 							})}
 						/>
-						<span className="text-red-400">{errors?.password?.message}</span>
+						<span
+							role="alert"
+							className="text-red-400"
+						>
+							{errors?.password?.message}
+						</span>
 					</div>
 					<SubmitButton
 						text="Sign in"

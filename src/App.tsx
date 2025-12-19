@@ -15,7 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Signout from "./features/user/Signout";
 import NewOrder from "./pages/NewOrder";
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			staleTime: 60 * 1000
