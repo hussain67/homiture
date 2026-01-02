@@ -6,7 +6,7 @@ import Spinner from "@/components/Spinner";
 
 function SingleProduct() {
 	const { productId } = useParams();
-	const { isLoading, error, data } = useSingleProduct(productId as string);
+	const { isLoading, error, productData: data } = useSingleProduct(productId as string);
 	console.log(data);
 	if (isLoading) {
 		return <Spinner />;
@@ -14,10 +14,10 @@ function SingleProduct() {
 	if (error) {
 		return <Error message="Product could not be loaded" />;
 	}
-	if (data?.data.attributes) {
+	if (data?.attributes) {
 		return (
 			<SelectProduct
-				productInfo={data?.data?.attributes}
+				productInfo={data.attributes}
 				productId={productId as string}
 			/>
 		);
