@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import SingleProduct from "../SingleProduct";
 import { useSingleProduct } from "../useSingleProduct";
-import type { Product, SingleProductResponse } from "@/types/productTypes";
 
 vi.mock("react-router-dom", async () => {
 	const actual = await vi.importActual("react-router-dom");
@@ -17,7 +16,7 @@ vi.mock("@/components/Spinner", () => ({
 	default: () => <div>Loading...</div>
 }));
 vi.mock("../SelectProduct", () => ({
-	default: ({ productInfo }: any) => <div>Product: {productInfo.title}</div>
+	default: ({ productInfo }: { productInfo: { title: string } }) => <div>Product: {productInfo.title}</div>
 }));
 const mockedUseSingleProducts = vi.mocked(useSingleProduct);
 const mockedUseParams = vi.mocked(useParams);
@@ -30,7 +29,7 @@ describe("SingleProduct - unit test", () => {
 		mockedUseSingleProducts.mockReturnValue({
 			isLoading: true,
 			error: null,
-			data: undefined
+			productData: undefined
 		});
 		render(<SingleProduct />);
 
@@ -41,7 +40,7 @@ describe("SingleProduct - unit test", () => {
 		mockedUseSingleProducts.mockReturnValue({
 			isLoading: false,
 			error: new Error("Product could not be loaded"),
-			data: undefined
+			productData: undefined
 		});
 
 		render(
@@ -61,23 +60,22 @@ describe("SingleProduct - unit test", () => {
 		mockedUseSingleProducts.mockReturnValue({
 			isLoading: false,
 			error: null,
-			data: {
-				data: {
-					id: "123",
-					attributes: {
-						title: "Modern Chair",
-						company: "Ikea",
-						description: "",
-						featured: false,
-						createdAt: "",
-						updatedAt: "",
-						publishedAt: "",
-						category: "",
-						image: "",
-						price: "199",
-						shipping: true,
-						colors: []
-					}
+
+			productData: {
+				id: "12",
+				attributes: {
+					title: "Modern Chair",
+					company: "Ikea",
+					description: "",
+					featured: false,
+					createdAt: "",
+					updatedAt: "",
+					publishedAt: "",
+					category: "",
+					image: "",
+					price: "199",
+					shipping: true,
+					colors: []
 				}
 			}
 		});
