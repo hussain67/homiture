@@ -24,7 +24,7 @@ export async function getfeaturedProducts(): Promise<ProductResponse> {
 export async function getSingleProduct(productId: string): Promise<SingleProductResponse> {
 	try {
 		const response = await axiosInstance<SingleProductResponse>(`/products/${productId}`);
-
+		console.log(response.data);
 		return response.data;
 	} catch {
 		throw new Error("Data could not be loaded");

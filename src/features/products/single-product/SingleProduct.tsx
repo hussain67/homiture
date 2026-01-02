@@ -7,6 +7,7 @@ import Spinner from "@/components/Spinner";
 function SingleProduct() {
 	const { productId } = useParams();
 	const { isLoading, error, data } = useSingleProduct(productId as string);
+	console.log(data);
 	if (isLoading) {
 		return <Spinner />;
 	}
