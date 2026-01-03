@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/reactQuery";
 import AppLayout from "./components/AppLayout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -9,19 +11,10 @@ import Signin from "./pages/Signin";
 import Orders from "./pages/Orders";
 import Error from "./pages/Error";
 import Signup from "./pages/Signup";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signout from "./features/user/Signout";
 import NewOrder from "./pages/NewOrder";
-
-export const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			staleTime: 60 * 1000
-		}
-	}
-});
 
 function App() {
 	return (
