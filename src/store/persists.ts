@@ -2,6 +2,7 @@ import { userInitialState } from "@/features/user/userSlice";
 import { cartInitialState } from "@/features/cart/cartSlice";
 import { themeInitialState } from "@/features/theme/themeSlice";
 
+// Initial states
 const initialStates = {
 	theme: themeInitialState,
 	cart: cartInitialState,
