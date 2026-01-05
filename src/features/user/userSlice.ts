@@ -1,34 +1,26 @@
-import type { User } from "@/types/authenticationTypes";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { User } from "@/types/authenticationTypes";
 
-type UserState = {
+export type UserState = {
 	user: User | null;
 };
 
-function getUserFromLocalstorage() {
-	const user = localStorage.getItem("user");
-	if (!user) return null;
-	return JSON.parse(user);
-}
-const initialState: UserState = {
-	user: getUserFromLocalstorage()
+export const userInitialState: UserState = {
+	user: null
 };
 
 export const userSlice = createSlice({
 	name: "user",
-	initialState,
+	initialState: userInitialState,
 	reducers: {
 		signinUser: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
-			localStorage.setItem("user", JSON.stringify(action.payload));
 		},
 		signoutUser: state => {
 			state.user = null;
-			localStorage.removeItem("user");
-		},
-
-		redirect: () => {}
+		}
 	}
 });
+
 export const { signinUser, signoutUser } = userSlice.actions;
 export default userSlice.reducer;
