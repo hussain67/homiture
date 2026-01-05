@@ -1,8 +1,9 @@
 import { useAppSelector } from "@/hooks";
 import CartListItem from "./CartListItem";
+import type { CartItem } from "@/types/cartTypes";
 
 function CartList() {
-	const cartItems = useAppSelector(state => state.cartState.cartItems);
+	const cartItems: CartItem[] = useAppSelector(state => state.cartState.cartItems);
 
 	return (
 		<div>

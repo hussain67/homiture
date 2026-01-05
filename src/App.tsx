@@ -15,10 +15,12 @@ import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signout from "./features/user/Signout";
 import NewOrder from "./pages/NewOrder";
+import { ThemeEffect } from "./app/ThemeEffect";
 
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
+			<ThemeEffect />
 			<BrowserRouter>
 				<Routes>
 					<Route
